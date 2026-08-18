@@ -11,10 +11,10 @@ import confetti from 'canvas-confetti';
 const weddingDate = new Date('2026-12-23T09:00:00+05:00');
 
 const gallery = [
-  { src: 'https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1600&q=90', alt: 'Couple outdoors', caption: 'The beginning' },
-  { src: 'https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=1400&q=90', alt: 'Wedding portrait', caption: 'Two souls' },
+  { src: '/couples.JPG', alt: 'Couple outdoors', caption: 'The beginning' },
+  { src: 'Halll.jpeg', alt: 'Wedding portrait', caption: 'The venu' },
   { src: 'https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&w=1400&q=90', alt: 'Wedding details', caption: 'Little details' },
-  { src: 'https://images.unsplash.com/photo-1465495976277-4387d4b0e4a6?auto=format&fit=crop&w=1600&q=90', alt: 'Wedding celebration', caption: 'A new chapter' },
+  { src: 'image3.jpeg', alt: 'Wedding celebration', caption: 'A new chapter' },
 ];
 
 const moments = [
