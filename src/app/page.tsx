@@ -26,7 +26,7 @@ const moments = [
 const eventContacts = [
   { name: 'Sajjad Haider', role: 'Event Host', phone: '+92 3452793903' },
   { name: 'Zohaib Lodhi', role: 'Event Coordinator', phone: '+92 3486817095' },
-  { name: 'Family Coordinator', role: 'Inquiries', phone: '+92 3133157397' },
+  { name: 'Shoaib Lodhi', role: 'Event Coordinator', phone: '+49 176 87871951' },
 ];
 
 function pad(value: number) {
