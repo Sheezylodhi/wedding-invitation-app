@@ -135,12 +135,12 @@ export default function Home() {
     return () => { audio.pause(); audio.currentTime = 0; };
   }, []);
 
+  // Countdown definition restored here
   const countdown = useMemo(() => [
     ['DAYS', timeLeft.days], ['HOURS', timeLeft.hours], ['MINUTES', timeLeft.mins], ['SECONDS', timeLeft.secs],
   ] as const, [timeLeft]);
 
-  async function openInvitation() {
-    setPhase('opening');
+  async function playSiteAudio() {
     const audio = audioRef.current;
     if (audio) {
       try { 
@@ -152,7 +152,10 @@ export default function Home() {
         setSoundOn(false); 
       }
     }
-    // 2.5 seconds pause for the opening slide animation before showing questions
+  }
+
+  async function openInvitation() {
+    setPhase('opening');
     window.setTimeout(() => setPhase('questions'), 2500);
   }
 
@@ -172,23 +175,25 @@ export default function Home() {
     }
   }
 
-  function choose(value: string) {
+  async function choose(value: string) {
     setAnswers((current) => [...current, value]);
     if (question < 2) {
       setQuestion((q) => q + 1);
       return;
     }
     setPhase('cover');
-    window.setTimeout(() => {
+    window.setTimeout(async () => {
       setSiteVisible(true);
+      await playSiteAudio(); // Music starts here after pre-screening[cite: 1]
       triggerCustomConfetti();
       window.setTimeout(() => document.getElementById('hero')?.scrollIntoView({ behavior: 'smooth' }), 100);
     }, 400);
   }
 
-  function skipPrelude() {
+  async function skipPrelude() {
     setPhase('cover');
     setSiteVisible(true);
+    await playSiteAudio(); // Music starts here on skip[cite: 1]
     triggerCustomConfetti();
     window.setTimeout(() => document.getElementById('hero')?.scrollIntoView({ behavior: 'smooth' }), 100);
   }
@@ -426,7 +431,7 @@ export default function Home() {
             </div>
           </section>
 
-     <section className="editorial-section venue-section">
+          <section className="editorial-section venue-section">
             <div className="section-inner">
               <Reveal from="left">
                 <div className="section-topline light"><span>04</span><i /><span>THE VENUE</span></div>
