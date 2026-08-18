@@ -3,7 +3,7 @@
 import { FormEvent, useEffect, useMemo, useRef, useState } from 'react';
 import { AnimatePresence, motion, useScroll, useSpring, useTransform } from 'framer-motion';
 import { Canvas, useFrame } from '@react-three/fiber';
-import { Environment, Float, Sparkles as R3FSparkles } from '@react-three/drei';
+import { Float, Sparkles as R3FSparkles } from '@react-three/drei';
 import * as THREE from 'three';
 import { ArrowDown, ArrowRight, CalendarDays, Check, ChevronRight, Clock3, Heart, MapPin, Music, Send, X } from 'lucide-react';
 import confetti from 'canvas-confetti';
@@ -86,11 +86,10 @@ function Atmosphere() {
   return (
     <group ref={group}>
       <Float speed={0.2} rotationIntensity={0.03} floatIntensity={0.2}>
-        <mesh><torusGeometry args={[2.2, 0.014, 8, 80]} /><meshBasicMaterial color="#d2ab72" transparent opacity={0.2} /></mesh>
-        <mesh rotation={[Math.PI / 2, 0.5, 0.7]}><torusGeometry args={[2.75, 0.01, 8, 80]} /><meshBasicMaterial color="#efc3cb" transparent opacity={0.18} /></mesh>
+        <mesh><torusGeometry args={[2.2, 0.014, 8, 80]} /><meshBasicMaterial color="#d2ab72" transparent opacity={0.3} /></mesh>
+        <mesh rotation={[Math.PI / 2, 0.5, 0.7]}><torusGeometry args={[2.75, 0.01, 8, 80]} /><meshBasicMaterial color="#efc3cb" transparent opacity={0.25} /></mesh>
       </Float>
-      <R3FSparkles count={25} scale={6} size={0.8} speed={0.04} color="#ead5c2" />
-      <Environment preset="studio" environmentIntensity={0.3} />
+      <R3FSparkles count={30} scale={6} size={0.9} speed={0.04} color="#ead5c2" />
     </group>
   );
 }
@@ -135,7 +134,6 @@ export default function Home() {
     return () => { audio.pause(); audio.currentTime = 0; };
   }, []);
 
-  // Countdown definition restored here
   const countdown = useMemo(() => [
     ['DAYS', timeLeft.days], ['HOURS', timeLeft.hours], ['MINUTES', timeLeft.mins], ['SECONDS', timeLeft.secs],
   ] as const, [timeLeft]);
@@ -184,7 +182,7 @@ export default function Home() {
     setPhase('cover');
     window.setTimeout(async () => {
       setSiteVisible(true);
-      await playSiteAudio(); // Music starts here after pre-screening[cite: 1]
+      await playSiteAudio();
       triggerCustomConfetti();
       window.setTimeout(() => document.getElementById('hero')?.scrollIntoView({ behavior: 'smooth' }), 100);
     }, 400);
@@ -193,7 +191,7 @@ export default function Home() {
   async function skipPrelude() {
     setPhase('cover');
     setSiteVisible(true);
-    await playSiteAudio(); // Music starts here on skip[cite: 1]
+    await playSiteAudio();
     triggerCustomConfetti();
     window.setTimeout(() => document.getElementById('hero')?.scrollIntoView({ behavior: 'smooth' }), 100);
   }
@@ -240,8 +238,9 @@ export default function Home() {
           <motion.section className="experience-intro" key={phase} initial={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.8 }}>
             <div className="intro-canvas">
               <Canvas camera={{ position: [0, 0, 8], fov: 38 }} dpr={[1, 1]} gl={{ powerPreference: 'high-performance', antialias: false }}>
-                <ambientLight intensity={0.68} />
-                <pointLight position={[2, 3, 4]} intensity={6} color="#f9d7df" />
+                <ambientLight intensity={1.2} />
+                <pointLight position={[2, 3, 4]} intensity={8} color="#f9d7df" />
+                <directionalLight position={[-2, 5, 2]} intensity={2} color="#ffffff" />
                 <Atmosphere />
               </Canvas>
             </div>
@@ -591,6 +590,19 @@ export default function Home() {
         .nav-music-pill.playing .equalizer-bars span:nth-child(3){animation:bounceBar 0.5s infinite alternate ease-in-out 0.1s}
         @keyframes bounceBar{0%{height:4px}100%{height:12px}}
         .music-label{font-size:11px;letter-spacing:0.1em;text-transform:uppercase;font-family:'Cormorant Garamond',serif;white-space:nowrap}
+
+        /* Force 4 Images to display on mobile devices */
+        @media (max-width: 768px) {
+          .gallery-mosaic {
+            display: grid !important;
+            grid-template-columns: repeat(2, 1fr) !important;
+            gap: 12px !important;
+          }
+          .mosaic-item {
+            display: block !important;
+            min-height: 180px !important;
+          }
+        }
       `}</style>
     </main>
   );
