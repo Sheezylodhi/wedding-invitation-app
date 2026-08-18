@@ -426,7 +426,7 @@ export default function Home() {
             </div>
           </section>
 
-          <section className="editorial-section venue-section">
+     <section className="editorial-section venue-section">
             <div className="section-inner">
               <Reveal from="left">
                 <div className="section-topline light"><span>04</span><i /><span>THE VENUE</span></div>
@@ -435,8 +435,8 @@ export default function Home() {
               <div className="venue-grid-wrap">
                 <div className="venue-art-real">
                   <iframe 
-                    title="C-184 Block J North Nazimabad Karachi Map"
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3618.3944686255755!2d67.0315!3d24.9262!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3eb33f972b260907%3A0x1cbd28990d0b7410!2sBlock%20J%20North%20Nazimabad%2C%20Karachi%2C%20Pakistan!5e0!3m2!1sen!2s!4v1700000000000!5m2!1sen!2s" 
+                    title="Castello Banquet North Nazimabad Karachi Map"
+                    src="https://maps.google.com/maps?q=Castello%20Banquet%20C-184%20Block%20J%20North%20Nazimabad%20Karachi&t=&z=16&ie=UTF8&iwloc=&output=embed" 
                     width="100%" 
                     height="100%" 
                     style={{ border: 0 }} 
@@ -447,10 +447,12 @@ export default function Home() {
                 <Reveal from="right" className="venue-copy">
                   <div className="venue-kicker">JOIN US</div>
                   <h3>Wednesday,<br />23 December 2026</h3>
-                  <div className="venue-line"><Clock3 size={16} /> 09:00 AM onwards</div>
-                  <div className="venue-line"><MapPin size={16} /> C-184, Block J, North Nazimabad, Karachi</div>
+                  <div className="venue-line"><Clock3 size={16} /> 09:00 PM onwards</div>
+                  <div className="venue-line"><MapPin size={16} /> Castello Banquet C-184, Block J, North Nazimabad, Karachi</div>
                   <p>Come as you are. Stay a little longer. Celebrate with the people who mean the most.</p>
-                  <a href="https://www.google.com/maps/search/?api=1&query=C-184%2C%20Block%20J%2C%20North%20Nazimabad%2C%20Karachi" target="_blank" rel="noopener noreferrer">Open in Google Maps <ChevronRight size={16} /></a>
+                  <a href="https://maps.app.goo.gl/eHSnptntewzcwqJu6" target="_blank" rel="noopener noreferrer">
+                    Open in Google Maps <ChevronRight size={16} />
+                  </a>
                 </Reveal>
               </div>
             </div>
