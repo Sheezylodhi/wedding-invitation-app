@@ -2,7 +2,7 @@ import type { Metadata, Viewport } from 'next';
 import './globals.css';
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://example.com'),
+  metadataBase: new URL('https://nimra-weds-owais.vercel.app/'),
   title: 'Nimra & Owais — Wedding Invitation',
   description: 'A beautiful beginning. Nimra & Owais are getting married on 23 December 2026 in Karachi.',
   applicationName: 'Nimra & Owais Wedding',
