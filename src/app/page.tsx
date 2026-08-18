@@ -5,7 +5,7 @@ import { AnimatePresence, motion, useScroll, useSpring, useTransform } from 'fra
 import { Canvas, useFrame } from '@react-three/fiber';
 import { Float, Sparkles as R3FSparkles } from '@react-three/drei';
 import * as THREE from 'three';
-import { ArrowDown, ArrowRight, CalendarDays, Check, ChevronRight, Clock3, Heart, MapPin, Music, Send, X } from 'lucide-react';
+import { ArrowDown, ArrowRight, CalendarDays, Check, ChevronRight, Clock3, Heart, MapPin, Music, Phone, Send, X } from 'lucide-react';
 import confetti from 'canvas-confetti';
 
 const weddingDate = new Date('2026-12-23T09:00:00+05:00');
@@ -19,8 +19,14 @@ const gallery = [
 
 const moments = [
   { no: '01', time: '09:00', title: 'Nikkah', text: 'With duas, family, and hearts full of gratitude.' },
-  { no: '02', time: '10:00', title: 'Celebration', text: 'A warm gathering with the people we love most.' },
+ { no: '02', time: '10:00', title: 'Dinner', text: 'A warm dinner with the people we love most.' },
   { no: '03', time: '11:00', title: 'Rukhsati', text: 'A tender goodbye and the beginning of forever.' },
+];
+
+const eventContacts = [
+  { name: 'Sajjad Haider', role: 'Event Host', phone: '+92 3452793903' },
+  { name: 'Zohaib Lodhi', role: 'Event Coordinator', phone: '+92 3486817095' },
+  { name: 'Family Coordinator', role: 'Inquiries', phone: '+92 3133157397' },
 ];
 
 function pad(value: number) {
@@ -483,10 +489,25 @@ export default function Home() {
           <section className="editorial-section rsvp-section">
             <div className="section-inner narrow">
               <Reveal from="left">
-                <div className="section-topline"><span>06</span><i /><span>RSVP</span></div>
+                <div className="section-topline"><span>06</span><i /><span>RSVP & CONTACT</span></div>
                 <h2 className="editorial-heading">Save us a seat<br /><em>in your heart.</em></h2>
-                <p className="editorial-lede">A simple response is all we need. We cannot wait to celebrate this beautiful day with you.</p>
+                <p className="editorial-lede">A simple response is all we need. Feel free to contact us directly if you need any assistance.</p>
               </Reveal>
+
+              {/* Direct Event Contact Numbers Section */}
+              <div className="event-contacts-grid" style={{ marginBottom: '30px', display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '15px' }}>
+                {eventContacts.map((c) => (
+                  <a key={c.name} href={`tel:${c.phone}`} style={{ textDecoration: 'none', background: 'rgba(255,255,255,0.7)', border: '1px solid rgba(194,145,129,0.3)', padding: '15px', borderRadius: '8px', display: 'flex', alignItems: 'center', gap: '12px', color: '#3e2c31', transition: 'transform 0.2s' }}>
+                    <div style={{ background: '#b99159', color: '#fff', padding: '10px', borderRadius: '50%', display: 'flex' }}><Phone size={16} /></div>
+                    <div>
+                      <div style={{ fontSize: '11px', textTransform: 'uppercase', letterSpacing: '0.1em', color: '#8c6b75' }}>{c.role}</div>
+                      <div style={{ fontWeight: 600, fontSize: '14px', fontFamily: 'Cormorant Garamond, serif' }}>{c.name}</div>
+                      <div style={{ fontSize: '13px', color: '#b99159', fontWeight: 500 }}>{c.phone}</div>
+                    </div>
+                  </a>
+                ))}
+              </div>
+
               <AnimatePresence mode="wait">
                 {!submitted ? (
                   <motion.form key="form" className="rsvp-card" onSubmit={submit} initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }}>
@@ -591,7 +612,6 @@ export default function Home() {
         @keyframes bounceBar{0%{height:4px}100%{height:12px}}
         .music-label{font-size:11px;letter-spacing:0.1em;text-transform:uppercase;font-family:'Cormorant Garamond',serif;white-space:nowrap}
 
-        /* Force 4 Images to display on mobile devices */
         @media (max-width: 768px) {
           .gallery-mosaic {
             display: grid !important;
